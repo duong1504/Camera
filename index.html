@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Camera App with Timer and Download Options</title>
+  <title>Camera App</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,37 +12,45 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      padding: 10px;
-      background-color: #f4f4f4;
+      padding: 0;
+      background-image: url(images/background.avif);
+      background-size: cover;
+
     }
     #mainContainer {
       display: flex;
       gap: 20px;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column; /* Đặt hướng ngang */
+      align-items: center;
+      flex-direction: column; 
       width: 100%;
-      max-width: 1200px;
+      max-width: 600px;
     }
     #optionsContainer {
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap; /* Tự xuống hàng nếu không đủ không gian */
       gap: 10px;
       max-width: 300px;
       width: 100%;
     }
     #buttonsContainer {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       flex-wrap: wrap;
       gap: 10px;
+      justify-content: center;
+
+
+
     }
     button {
       padding: 10px;
       font-size: 14px;
       cursor: pointer;
       width: 100%;
+      width: 150px;
       border-radius: 15px;
+      background-color: black;
+      color: white
     }
     button:hover {
       background-color: #adb5bd;
@@ -52,13 +60,14 @@
       text-align: center;
       margin-top: 10px;
       font-weight: bold;
+      color: white;
     }
     #cameraPreview {
       width: 100%;
-      max-width: 600px;
-      height: 290px;
+      max-width: 1000px;
+      height: 500px;
       border: 1px solid #ccc;
-      background-color: #333;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -71,17 +80,33 @@
     #downloadLinks {
       margin-top: 20px;
       text-align: center;
+      color: white;
     }
     #downloadLinks a {
       display: block;
       margin-top: 10px;
       font-size: 16px;
+      color: white;
+
     }
   </style>
 </head>
 <body>
 
   <div id="mainContainer">
+    
+    <!-- Camera and Downloads -->
+    <div style="width: 1000px;">
+      <div id="cameraPreview">
+        <p style="color: white;">Camera feed will appear here.</p>
+      </div>
+      <div id="downloadLinks">
+        <div id="timer">00:00</div>
+        <a id="downloadLink" href="#" download="recorded-video.webm" style="display: none;">Download Video</a>
+        <a id="downloadImageLink" href="#" download="captured-image.png" style="display: none;">Download Image</a>
+      </div>
+    </div>
+
     <!-- Options and Buttons -->
     <div id="optionsContainer">
       <div id="buttonsContainer">
@@ -91,18 +116,6 @@
         <button id="resumeButton" disabled>Resume Recording</button>
         <button id="stopButton" disabled>Stop Recording</button>
         <button id="captureImageButton" disabled>Capture Picture</button>
-      </div>
-      <div id="timer">00:00</div>
-    </div>
-
-    <!-- Camera and Downloads -->
-    <div>
-      <div id="cameraPreview">
-        <p style="color: white;">Camera feed will appear here.</p>
-      </div>
-      <div id="downloadLinks">
-        <a id="downloadLink" href="#" download="recorded-video.webm" style="display: none;">Download Video</a>
-        <a id="downloadImageLink" href="#" download="captured-image.png" style="display: none;">Download Image</a>
       </div>
     </div>
   </div>
